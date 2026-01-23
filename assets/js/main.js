@@ -1,6 +1,6 @@
     // CONFIGURATION (السيرفر الجديد)
         const CONFIG = {
-            api: { base: "https://x-api.uk", user: "CYNLgSSx45n", pass: "cp2p92dJWjMf" }
+            api: { base: "https://x-api.uk", user: "WD7zjb5LTuoDw", pass: "DrqM2s9Tu7fy" }
         };
 
         const translations = {

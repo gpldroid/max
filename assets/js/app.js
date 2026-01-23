@@ -2,8 +2,8 @@
 const CONFIG = {
     api: {
         base: "https://x-api.uk",
-        user: "SoH1THYeDSG",
-        pass: "F9cjyKSHEFd"
+        user: "CYNLgSSx45n",
+        pass: "cp2p92dJWjMf"
     }
 };
 

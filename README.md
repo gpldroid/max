@@ -13,4 +13,4 @@
 - CORS friendly (with proxy)
 
 ⚠️ IPTV credentials are NOT included.
-By:IMAX Eddin Limrani
+By:IMAD Eddin Limrani

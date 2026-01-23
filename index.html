@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DAMI X-PRO - أفضل منصة لمشاهدة القنوات والأفلام والمسلسلات بجودة عالية">
+    <meta name="keywords" content="DAMI X-PRO, IPTV, Live TV, Movies, Series, Imad Eddine Lamrani">
+    <meta name="author" content="Imad Eddine Lamrani">
+    
+    <meta property="og:title" content="DAMI X-PRO | عماد الدين لمراني">
+    <meta property="og:description" content="أفضل منصة لمشاهدة القنوات والأفلام والمسلسلات بجودة عالية">
+    <meta property="og:image" content="https://cdn-icons-png.flaticon.com/512/2965/2965363.png">
+    
+    <title>DAMI X-PRO | عماد الدين لمراني</title>
+    
+    <link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/2965/2965363.png" type="image/x-icon">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="/assets /css/style.css">
+</head>
+<body>
+
+    <a href="https://wa.me/212783539816" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+    <div id="backToTop" class="back-to-top" onclick="window.scrollTo({top:0, behavior:'smooth'})"><i class="fas fa-arrow-up"></i></div>
+
+    <div id="overlay" class="fixed inset-0 bg-black/60 z-[999] hidden" onclick="toggleSidebar()"></div>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="flex justify-between items-center mb-8 pb-4 border-b border-[var(--border-color)]">
+            <div class="text-xl font-black text-[var(--accent-color)]">DAMI X-PRO</div>
+            <i class="fas fa-times cursor-pointer text-xl" onclick="toggleSidebar()"></i>
+        </div>
+        <nav>
+            <div class="sidebar-link" onclick="location.reload()"><i class="fas fa-home"></i> <span data-translate="home">الرئيسية</span></div>
+            <div class="sidebar-link" onclick="openModal('about')"><i class="fas fa-info-circle"></i> <span data-translate="about">من نحن</span></div>
+            <div class="sidebar-link" onclick="window.open('https://wa.me/212783539816')"><i class="fas fa-envelope"></i> <span data-translate="contact">اتصل بنا</span></div>
+            <div class="sidebar-link" onclick="openModal('privacy')"><i class="fas fa-user-shield"></i> <span data-translate="privacy">سياسة الخصوصية</span></div>
+            <div class="my-4 border-t border-[var(--border-color)]"></div>
+            <a href="https://dami-xpro.com/download" class="sidebar-link" style="background: var(--gradient-accent); color: white;">
+                <i class="fab fa-android" style="color: white;"></i> <span data-translate="download_app">تحميل التطبيق</span>
+            </a>
+        </nav>
+    </aside>
+
+    <header class="bg-[var(--bg-card)] border-b border-[var(--border-color)] sticky top-0 z-[50] p-4 flex justify-between items-center">
+        <div class="flex items-center gap-4">
+            <i class="fas fa-bars cursor-pointer text-xl" onclick="toggleSidebar()"></i>
+            <div class="text-xl font-bold"><span class="text-[var(--accent-color)]">DAMI</span> X-PRO</div>
+        </div>
+        <div class="flex items-center gap-3">
+            <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-transparent border border-[var(--border-color)] rounded-lg px-2 py-1 text-sm outline-none text-[var(--text-main)]">
+                <option value="ar">العربية</option>
+                <option value="en">English</option>
+                <option value="fr">Français</option>
+                <option value="es">Español</option>
+            </select>
+            <div class="w-10 h-10 rounded-full flex items-center justify-center bg-gray-800/50 cursor-pointer" onclick="toggleTheme()">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="player-wrapper w-full bg-black flex justify-center">
+        <video id="player" playsinline controls crossorigin class="w-full max-w-5xl aspect-video"></video>
+    </div>
+
+    <main class="max-w-7xl mx-auto p-4">
+        <div class="relative max-w-2xl mx-auto my-8">
+            <input type="text" id="searchInput" class="w-full bg-[var(--bg-card)] border-2 border-[var(--border-color)] rounded-full py-3 px-12 outline-none focus:border-[var(--accent-color)] text-[var(--text-main)]" placeholder="ابحث هنا..." data-translate-placeholder="search">
+            <i class="fas fa-search absolute right-5 top-1/2 -translate-y-1/2 text-gray-500"></i>
+        </div>
+
+        <div class="flex max-w-md mx-auto bg-[var(--bg-card)] border border-[var(--border-color)] p-1 rounded-2xl mb-8">
+            <button onclick="switchMode('live')" class="mode-btn active flex-1 py-2 rounded-xl text-sm font-bold" data-mode="live"><span data-translate="live">مباشر</span></button>
+            <button onclick="switchMode('movies')" class="mode-btn flex-1 py-2 rounded-xl text-sm font-bold" data-mode="movies"><span data-translate="movies">أفلام</span></button>
+            <button onclick="switchMode('series')" class="mode-btn flex-1 py-2 rounded-xl text-sm font-bold" data-mode="series"><span data-translate="series">مسلسلات</span></button>
+        </div>
+
+        <div id="categoriesContainer" class="flex overflow-x-auto gap-2 pb-4 mb-6 scrollbar-hide"></div>
+        <div id="contentGrid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+        <div id="loader" class="hidden"><div class="loader"></div></div>
+        <button id="loadMoreBtn" onclick="loadMore()" class="hidden mx-auto mt-8 bg-[var(--bg-card)] border border-[var(--accent-color)] text-[var(--accent-color)] px-10 py-2 rounded-full font-bold hover:bg-[var(--accent-color)] hover:text-white transition">عرض المزيد</button>
+    </main>
+
+    <footer class="bg-[var(--bg-card)] border-t border-[var(--border-color)] p-10 text-center mt-20">
+        <a href="https://dami-xpro.com/download" class="inline-flex items-center gap-3 bg-[var(--accent-color)] text-white px-8 py-3 rounded-full font-bold mb-8 hover:scale-105 transition">
+            <i class="fab fa-android"></i> <span data-translate="download_app">تحميل التطبيق</span>
+        </a>
+        <p class="font-bold text-xl mb-2 text-[var(--text-main)]">DAMI X-PRO &copy; <span id="year"></span></p>
+        <p class="text-gray-500">Designed & Developed by <span class="text-[var(--accent-color)]">Imad Eddine Lamrani</span></p>
+    </footer>
+
+    <div id="modal-about" class="modal" onclick="closeModal('about')">
+        <div class="modal-content text-center" onclick="event.stopPropagation()">
+            <h2 class="text-2xl font-bold text-[var(--accent-color)] mb-4" data-translate="about">من نحن</h2>
+            <p class="text-[var(--text-secondary)]">DAMI X-PRO تطبيق رائد لمشاهدة المحتوى الترفيهي بدقة عالية. تم تطوير هذا النظام بواسطة عماد الدين لمراني.</p>
+            <button class="mt-6 px-8 py-2 bg-[var(--accent-color)] text-white rounded-lg" onclick="closeModal('about')">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="modal-privacy" class="modal" onclick="closeModal('privacy')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h2 class="text-2xl font-bold text-[var(--accent-color)] mb-4 text-center" data-translate="privacy">سياسة الخصوصية</h2>
+            <p class="text-[var(--text-secondary)] text-sm">نحن نحترم خصوصية المستخدمين. لا نقوم بجمع بيانات شخصية لاستخدامها خارج نطاق تحسين تجربة المشاهدة الخاصة بك.</p>
+            <button class="mt-6 w-full py-2 bg-[var(--accent-color)] text-white rounded-lg" onclick="closeModal('privacy')">موافق</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.4.10/dist/hls.min.js"></script>
+    <script src="/assets /js/main.js"></script>
+
+</body>
+</html>

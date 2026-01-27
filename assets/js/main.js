@@ -1,6 +1,6 @@
     // CONFIGURATION (السيرفر الجديد)
         const CONFIG = {
-            api: { base: "https://x-api.uk", user: "WD7zjb5LTuoDw", pass: "DrqM2s9Tu7fy" }
+            api: { base: "http://splus.smartres.net/", user: "12345", pass: "54321" }
         };
 
         const translations = {

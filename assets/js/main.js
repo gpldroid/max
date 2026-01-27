@@ -122,9 +122,13 @@
         function playStream(id, ext) {
             const video = document.getElementById('player');
             // تأكيد المسار المباشر للسيرفر
-            let streamUrl = currentMode === 'live' 
-                ? `${CONFIG.api.base}/live/${CONFIG.api.user}/${CONFIG.api.pass}/${id}.m3u8`
-                : `${CONFIG.api.base}/movie/${CONFIG.api.user}/${CONFIG.api.pass}/${id}.${ext || 'mp4'}`;
+            let directUrl = currentMode === 'live' 
+    ? `${CONFIG.api.base}/live/${CONFIG.api.user}/${CONFIG.api.pass}/${id}.m3u8`
+    : `${CONFIG.api.base}/movie/${CONFIG.api.user}/${CONFIG.api.pass}/${id}.${ext || 'mp4'}`;
+
+// تمرير عبر البروكسي
+let streamUrl = `proxy.php?url=${encodeURIComponent(directUrl)}`;
+
             
             if(hlsInstance) hlsInstance.destroy();
 

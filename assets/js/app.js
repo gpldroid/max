@@ -1,7 +1,7 @@
 // ⚠️ لا تضع بياناتك الحقيقية هنا في GitHub
 const CONFIG = {
     api: {
-        base: "http://splus.smartres.net",
+        base: "http://splus.smartres.net:80",
         user: "12345",
         pass: "54321"
     }

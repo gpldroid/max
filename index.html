@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مشغل بث احترافي</title>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #0b0f1a);
+    color: white;
+    text-align: center;
+}
+
+header {
+    padding: 15px;
+    font-size: 22px;
+    background: #111827;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 15px;
+}
+
+input {
+    width: 80%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    margin-bottom: 10px;
+    font-size: 15px;
+}
+
+button {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+video {
+    width: 100%;
+    margin-top: 15px;
+    border-radius: 10px;
+    background: black;
+    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+.status {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #93c5fd;
+}
+</style>
+</head>
+
+<body>
+
+<header>🎬 مشغل IPTV + Google + M3U8 عبر Proxy</header>
+
+<div class="container">
+    <input type="text" id="urlInput" placeholder="ضع رابط البث هنا (m3u8 أو mp4)">
+    <br>
+    <button onclick="playStream()">▶ تشغيل</button>
+    <button onclick="stopStream()">⏹ إيقاف</button>
+
+    <div class="status" id="status">جاهز للتشغيل...</div>
+
+    <video id="video" controls autoplay></video>
+</div>
+
+<script>
+let hls;
+
+function playStream() {
+    const input = document.getElementById("urlInput").value.trim();
+    const status = document.getElementById("status");
+    const video = document.getElementById("video");
+
+    if (!input) {
+        alert("ضع رابط بث صحيح");
+        return;
+    }
+
+    const proxiedUrl = "proxy.php?url=" + encodeURIComponent(input);
+    status.textContent = "جاري تحميل البث...";
+
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+
+    if (Hls.isSupported() && input.includes(".m3u8")) {
+        hls = new Hls();
+        hls.loadSource(proxiedUrl);
+        hls.attachMedia(video);
+
+        hls.on(Hls.Events.MANIFEST_PARSED, function() {
+            status.textContent = "تم تشغيل البث بنجاح ✅";
+        });
+
+        hls.on(Hls.Events.ERROR, function(event, data) {
+            status.textContent = "حدث خطأ في البث ❌";
+        });
+
+    } else {
+        video.src = proxiedUrl;
+        video.onloadeddata = () => status.textContent = "تم تشغيل الفيديو ✅";
+        video.onerror = () => status.textContent = "فشل تشغيل الرابط ❌";
+    }
+}
+
+function stopStream() {
+    const video = document.getElementById("video");
+    const status = document.getElementById("status");
+
+    if (hls) {
+        hls.destroy();
+        hls = null;
+    }
+
+    video.pause();
+    video.src = "";
+    status.textContent = "تم إيقاف البث";
+}
+</script>
+
+</body>
+</html>

@@ -1,9 +1,9 @@
 // ⚠️ لا تضع بياناتك الحقيقية هنا في GitHub
 const CONFIG = {
     api: {
-        base: "https://x-api.uk",
-        user: "u114Z3H6GA",
-        pass: "mB7kEktVE"
+        base: "http://splus.smartres.net",
+        user: "12345",
+        pass: "54321"
     }
 };
 

@@ -1,9 +1,9 @@
 // ⚠️ لا تضع بياناتك الحقيقية هنا في GitHub
 const CONFIG = {
     api: {
-        base: "http://splus.smartres.net:80",
-        user: "12345",
-        pass: "54321"
+        base: "https://xapi-ie.org",
+        user: "DyYqau1DhoT",
+        pass: "Dc7ygaZvvzv2"
     }
 };
 

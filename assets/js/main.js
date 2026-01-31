@@ -1,6 +1,6 @@
     // CONFIGURATION (السيرفر الجديد)
         const CONFIG = {
-            api: { base: "http://splus.smartres.net:80", user: "12345", pass: "54321" }
+            api: { base: "https://xapi-ie.org", user: "DyYqau1DhoT", pass: "Dc7ygaZvvzv2" }
         };
 
         const translations = {

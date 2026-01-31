@@ -5,7 +5,7 @@ $url = urldecode($_GET['url']);
 if (!filter_var($url, FILTER_VALIDATE_URL)) exit("Invalid URL");
 
 function isM3U8($url) {
-    return stripos($url, ".m3u8") !== false;
+    return stripos($url, ".m3u8 ,.m3u_plus") !== false;
 }
 
 $headers = [

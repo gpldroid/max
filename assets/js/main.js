@@ -1,6 +1,6 @@
     // CONFIGURATION (السيرفر الجديد)
         const CONFIG = {
-            api: { base: "http://theking365tv.best:2103", user: "fredbl01", pass: "ifPAJ0XM" }
+            api: { base: "https://x-api.cc", user: "aPasDGnXhAfw", pass: "xs8D7JSFkJ" }
         };
 
         const translations = {
